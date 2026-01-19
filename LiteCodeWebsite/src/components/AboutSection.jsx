@@ -3,39 +3,68 @@ import aboutImg from "../assets/images/about.jpg";
 
 const AboutSection = () => {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16">
-      <div className="grid md:grid-cols-2 gap-12 items-center">
-        
-        {/* Text */}
-        <div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">
-            About <span className="text-indigo-600">LiteCode</span>
-          </h1>
+    <section className="relative overflow-hidden py-24">
+      {/* Decorative gradient blob */}
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl" />
+      <div className="absolute top-1/3 -right-24 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
 
-          <p className="text-gray-600 leading-relaxed mb-4">
-            We provide cost-effective unified digital solutions that fast-track
-            digital transformation, improve operational efficiency, and boost
-            business performance.
-          </p>
+      <div className="relative max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-          <p className="text-gray-600 leading-relaxed mb-4">
-            With over <strong>12+ years of expertise</strong>, we help businesses
-            focus on core competencies while we manage IT and enterprise needs.
-          </p>
+          {/* Text Content */}
+          <div className="space-y-6">
+            <span className="inline-block px-4 py-1 text-sm font-medium rounded-full bg-indigo-100 text-indigo-700">
+              About Us
+            </span>
 
-          <p className="text-gray-600 leading-relaxed">
-            From startups to enterprises, we deliver tailor-made software
-            solutions built on trust, transparency, and innovation.
-          </p>
-        </div>
+            <h1 className="text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+              Building Digital Excellence at{" "}
+              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                LiteCode
+              </span>
+            </h1>
 
-        {/* Image */}
-        <div className="flex justify-center">
-          <img
-            src={aboutImg}
-            alt="About LiteCode"
-            className="rounded-2xl shadow-xl max-w-md"
-          />
+            <p className="text-lg text-gray-600 leading-relaxed">
+              We deliver cost-effective, unified digital solutions that accelerate
+              transformation, improve efficiency, and unlock sustainable business growth.
+            </p>
+
+            <p className="text-gray-600 leading-relaxed">
+              With over <strong className="text-gray-900">12+ years of expertise</strong>,
+              our team enables businesses to stay focused on what matters most—while we
+              take care of technology, innovation, and scale.
+            </p>
+
+            {/* Highlights */}
+            <div className="flex flex-wrap gap-4 pt-4">
+              {[
+                "Enterprise Solutions",
+                "Startup Friendly",
+                "Secure & Scalable",
+                "Customer-Centric",
+              ].map((item, i) => (
+                <span
+                  key={i}
+                  className="px-4 py-2 text-sm rounded-lg bg-gray-100 text-gray-700"
+                >
+                  ✓ {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Image Card */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-3xl rotate-3" />
+            <div className="relative bg-white rounded-3xl p-2 shadow-2xl">
+              <img
+                src={aboutImg}
+                alt="About LiteCode"
+                className="rounded-2xl object-cover w-full h-[420px]"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
