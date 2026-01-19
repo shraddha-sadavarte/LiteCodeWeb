@@ -1,8 +1,14 @@
 import React from 'react'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
-    <div className='w-full bg-red-500'>App</div>
+    <>
+    <Navbar />
+    <main className='pt-20'></main>
+    <Footer />
+    </>
   )
 }
 
