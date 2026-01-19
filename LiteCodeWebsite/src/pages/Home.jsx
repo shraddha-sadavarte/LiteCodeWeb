@@ -3,11 +3,14 @@ import { CheckCircle, Workflow, Users, Lightbulb } from "lucide-react";
 import heroImg from '../assets/hero.svg';
 import team from '../assets/team.svg';
 import {useNavigate} from "react-router-dom";
+import ClientsSection from "../components/ClientsSection";
+import StatsSection from "../components/StatsSection";
+import WhatsAppFloat from "../components/WhatsAppFloat";
 
 function Home() {
 
     const navigate = useNavigate();
-    
+
 return (
 <>
     {/* HERO / COVER SECTION */}
@@ -136,6 +139,10 @@ return (
     </div>
     </div>
     </section>
+
+    <ClientsSection />
+    <StatsSection />
+    <WhatsAppFloat />
 </>
 );
 }

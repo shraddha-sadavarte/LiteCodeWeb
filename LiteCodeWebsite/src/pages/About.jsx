@@ -9,13 +9,11 @@ import Footer from '../components/Footer';
 const About = () => {
   return (
         <main className="pt-24">
-            <Navbar />
-      <AboutSection />
-      <VissionMission />
-      <ClientsSection />
-      <StatsSection />
-      <WhatsAppFloat />
-      <Footer/>
+            <AboutSection />
+            <VissionMission />
+            <ClientsSection />
+            <StatsSection />
+            <WhatsAppFloat />
     </main>
   )
 }

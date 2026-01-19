@@ -7,11 +7,9 @@ import Footer from "../components/Footer";
 const Contact = () => {
   return (
     <main className="pt-24">
-        <Navbar />
       <ContactForm />
       <ContactMap />
       <WhatsAppFloat />
-      <Footer/>
     </main>
   );
 };

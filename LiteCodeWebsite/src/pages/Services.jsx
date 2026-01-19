@@ -1,6 +1,7 @@
 import React from 'react'
 import ServiceCard from '../components/ServiceCard'
 import { Code, Blocks, BrainCircuit, Cloud, Smartphone, ShieldCheck } from 'lucide-react'
+import WhatsAppFloat from '../components/WhatsAppFloat'
 
 const Services = () => {
   return (
@@ -51,6 +52,8 @@ const Services = () => {
                 />
             </div>
         </div>
+
+        <WhatsAppFloat />
     </section>
   )
 }
