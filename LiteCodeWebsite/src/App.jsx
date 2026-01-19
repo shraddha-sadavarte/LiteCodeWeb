@@ -4,20 +4,25 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Services from './pages/Services';
+import Home from './pages/Home';
 const App = () => {
   return (
     <BrowserRouter>
-      <div>
+      
+        <Navbar />
+        <main className="pt-16">
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/navbar" element={<Navbar />} />
-          <Route path="/footer" element={<Footer />} />
           <Route path="/contact" element={<Contact />} />
-        
+          <Route path="/services" element={<Services />} />
+         </Routes>
+        </main>
+        <Footer />
  
-        </Routes>
-      </div>
     </BrowserRouter>
   ) 
+
 }
 export default App

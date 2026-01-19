@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -17,10 +18,10 @@ const Footer = () => {
         <div>
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
-                <li><a href="#home" className="hover:text-white">Home</a></li>
-                <li><a href="#about" className="hover:text-white">About</a></li>
-                <li><a href="#services" className="hover:text-white">Services</a></li>
-                <li><a href="#contact" className="hover:text-white">Contact</a></li>
+                <li><Link to="/" className='hover:text-white'>Home</Link></li>
+                <li><Link to="/about" className="hover:text-white">About</Link></li>
+                <li><Link to="/services" className="hover:text-white">Services</Link></li>
+                <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
             </ul>
         </div>
 
@@ -29,10 +30,36 @@ const Footer = () => {
         <div>
             <h3 className="text-white font-semibold mb-4">Services</h3>
             <ul className="space-y-2 text-sm">
-                <li>Web Development</li>
-                <li>Blockchain Solutions</li>
-                <li>AI & ML Models</li>
-                <li>Cloud Consulting</li>
+                <li>
+                    <Link to="/services" className="hover:text-white transition">
+                        Web Development
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/services" className="hover:text-white transition">
+                        Blockchain Solutions
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/services" className="hover:text-white transition">
+                        AI & ML
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/services" className="hover:text-white transition">
+                        Cloud & DevOps
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/services" className="hover:text-white transition">
+                        Cyber Security
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/services" className="hover:text-white transition">
+                        Mobile App Development
+                    </Link>
+                </li>
             </ul>
         </div>
 
