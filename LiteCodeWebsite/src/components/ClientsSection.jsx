@@ -2,11 +2,17 @@
 import achev from "../assets/images/achev.jpg";
 import cntech from "../assets/images/cntech.jpg";
 import reliance from "../assets/images/reliance.jpg";
+import hvc from "../assets/images/hvc-logo.png";
+import opalForce from "../assets/images/OpalForce-logo.png"
+import yantra from "../assets/images/yantra-logo.png"
 
 const logos = [
   { src: achev, name: "Achev" },
   { src: cntech, name: "CNTech" },
   { src: reliance, name: "Reliance" },
+  { src: hvc, name: "HVC" },
+  { src: opalForce, name: "OpalFOrce" },
+  { src: yantra, name: "Yantra" }
 ];
 
 const ClientsSection = () => {
