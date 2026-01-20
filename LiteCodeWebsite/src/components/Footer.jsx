@@ -28,6 +28,8 @@ const Footer = () => {
   const [activeService, setActiveService] = useState(null);
   const navigate = useNavigate();
 
+const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+
   return (
     <>
       {/* ================= CTA STRIP ================= */}
@@ -43,7 +45,7 @@ const Footer = () => {
           initial={{ x: "-100%" }}
           animate={{ x: "100%" }}
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          className="absolute top-0 h-[2px] w-full bg-gradient-to-r from-transparent via-white/70 to-transparent"
+          className="absolute top-0 h-[1px] w-full bg-white/20"
         />
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-white">
           <div>
@@ -126,14 +128,27 @@ const Footer = () => {
             <ul className="space-y-1 text-xs">
               {services.map((service, i) => (
                 <li
-                  key={i}
-                  onMouseEnter={() => setActiveService(service)}
-                  onMouseLeave={() => setActiveService(null)}
-                  onClick={() => navigate("/services")}
-                  className="cursor-pointer hover:text-white transition-all hover:translate-x-1"
-                >
-                  {service.title}
+                    key={i}
+                    onMouseEnter={(e) => {
+                        setActiveService(service);
+                        setTooltipPos({
+                        x: e.clientX,
+                        y: e.clientY,
+                        });
+                    }}
+                    onMouseLeave={() => setActiveService(null)}
+                    onMouseMove={(e) =>
+                        setTooltipPos({
+                        x: e.clientX,
+                        y: e.clientY,
+                        })
+                    }
+                    onClick={() => navigate("/services")}
+                    className="cursor-pointer hover:text-white transition-all hover:translate-x-1"
+                    >
+                    {service.title}
                 </li>
+
               ))}
             </ul>
           </div>
@@ -169,17 +184,26 @@ const Footer = () => {
 
         {/* Floating service tooltip */}
         <AnimatePresence>
-          {activeService && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              className="fixed bottom-32 left-1/2 -translate-x-1/2 w-72 bg-gray-800 text-xs p-3 rounded-lg shadow-lg z-50"
-            >
-              <h4 className="text-white font-semibold mb-1">{activeService.title}</h4>
-              <p className="text-gray-400">{activeService.desc}</p>
-            </motion.div>
-          )}
+            {activeService && (
+                <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                style={{
+                    top: tooltipPos.y + 15,
+                    left: tooltipPos.x + 15,
+                }}
+                className="fixed z-50 w-72 bg-gray-800 text-xs p-3 rounded-lg shadow-xl pointer-events-none"
+                >
+                <h4 className="text-white font-semibold mb-1">
+                    {activeService.title}
+                </h4>
+                <p className="text-gray-400">
+                    {activeService.desc}
+                </p>
+                </motion.div>
+            )}
         </AnimatePresence>
 
         {/* Bottom */}
