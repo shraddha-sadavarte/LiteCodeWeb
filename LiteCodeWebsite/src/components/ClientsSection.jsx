@@ -1,18 +1,18 @@
-// src/components/ClientsSection.jsx
 import achev from "../assets/images/achev.jpg";
 import cntech from "../assets/images/cntech.jpg";
 import reliance from "../assets/images/reliance.jpg";
 import hvc from "../assets/images/hvc-logo.png";
-import opalForce from "../assets/images/OpalForce-logo.png"
-import yantra from "../assets/images/yantra-logo.png"
+import opalForce from "../assets/images/OpalForce-logo.png";
+import yantra from "../assets/images/yantra-logo.png";
+import { motion } from "framer-motion";
 
 const logos = [
   { src: achev, name: "Achev" },
   { src: cntech, name: "CNTech" },
   { src: reliance, name: "Reliance" },
   { src: hvc, name: "HVC" },
-  { src: opalForce, name: "OpalFOrce" },
-  { src: yantra, name: "Yantra" }
+  { src: opalForce, name: "OpalForce" },
+  { src: yantra, name: "Yantra" },
 ];
 
 const ClientsSection = () => {
@@ -40,16 +40,20 @@ const ClientsSection = () => {
         {/* Logo Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {logos.map((logo, index) => (
-            <div
+            <motion.div
               key={index}
               className="group flex items-center justify-center bg-white/80 backdrop-blur rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.15, duration: 0.6 }}
             >
               <img
                 src={logo.src}
                 alt={`${logo.name} Logo`}
                 className="h-20 object-contain grayscale group-hover:grayscale-0 transition duration-300"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

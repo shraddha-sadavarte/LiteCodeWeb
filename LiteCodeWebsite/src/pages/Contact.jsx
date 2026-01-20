@@ -2,8 +2,7 @@
 import ContactForm from "../components/ContactForm";
 import ContactMap from "../components/ContactMap";
 import WhatsAppFloat from "../components/WhatsAppFloat";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+
 const Contact = () => {
   return (
     <main className="pt-24">
