@@ -56,7 +56,7 @@ const ChatBot = () => {
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const [lastIntent, setLastIntent] = useState("greeting");
-  const [showWelcome, setShowWelcome] = useState(false); // start hidden
+  const [showWelcome, setShowWelcome] = useState(false);
 
   const [messages, setMessages] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -75,10 +75,15 @@ const ChatBot = () => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, typing]);
 
-  // Show welcome popup after 3-4 seconds
+  // Show welcome popup after load and auto-hide
   useEffect(() => {
-    const timer = setTimeout(() => setShowWelcome(true), 3500); // 3.5 sec delay
-    return () => clearTimeout(timer);
+    const showTimer = setTimeout(() => setShowWelcome(true), 3500);
+    const hideTimer = setTimeout(() => setShowWelcome(false), 8500); // auto hide after 5 sec
+
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
   }, []);
 
   /* -------------------- HELPERS -------------------- */
@@ -112,45 +117,38 @@ const ChatBot = () => {
     if (!text.trim()) return;
     setMessages((prev) => [...prev, { from: "user", text }]);
     setInput("");
-    const intent = detectIntent(text);
-    botReply(intent);
+    botReply(detectIntent(text));
   };
 
   /* -------------------- UI -------------------- */
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-6 right-6 z-50">
 
       {/* ----------------- WELCOME POPUP ----------------- */}
       <AnimatePresence>
         {showWelcome && !open && (
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 50 }}
-            className="absolute right-full bottom-0 mr-2 bg-indigo-600 text-white px-3 py-1 rounded-full shadow-lg whitespace-nowrap"
+            exit={{ opacity: 0, x: 40 }}
+            className="absolute right-full bottom-0 mr-3 bg-indigo-600 text-white px-4 py-1.5 rounded-full shadow-lg whitespace-nowrap"
           >
-            Hey! How can I help you?
-            <button
-              onClick={() => setShowWelcome(false)}
-              className="ml-2 text-white opacity-80 hover:opacity-100"
-            >
-              <X size={14} />
-            </button>
+            How can I help you?
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* ----------------- CHAT BUTTON ----------------- */}
-      {!open && (
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          onClick={() => setOpen(true)}
-          className="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-2xl flex items-center justify-center"
-        >
-          <MessageCircle />
-        </motion.button>
-      )}
+      {/* ----------------- CHAT BUTTON (POSITION LOCKED) ----------------- */}
+      <motion.button
+        whileHover={{ scale: open ? 1 : 1.1 }}
+        onClick={() => setOpen(true)}
+        className={`w-12 h-12 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-2xl flex items-center justify-center transition-opacity duration-300 ${
+          open ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        <MessageCircle />
+      </motion.button>
 
       {/* ----------------- CHAT WINDOW ----------------- */}
       <AnimatePresence>
@@ -160,7 +158,7 @@ const ChatBot = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 120, opacity: 0 }}
             transition={{ type: "spring", bounce: 0.3 }}
-            className="w-[360px] h-[600px] bg-white rounded-2xl shadow-[0_40px_100px_rgba(0,0,0,0.25)] flex flex-col mt-2"
+            className="absolute bottom-14 right-0 w-[360px] h-[600px] bg-white rounded-2xl shadow-[0_40px_100px_rgba(0,0,0,0.25)] flex flex-col"
           >
             {/* Header */}
             <div className="flex justify-between items-center px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
@@ -174,12 +172,9 @@ const ChatBot = () => {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 px-4 py-3 space-y-3 overflow-y-auto scrollbar-hide">
+            <div className="flex-1 px-4 py-3 space-y-3 overflow-y-auto">
               {messages.map((msg, i) => (
-                <div
-                  key={i}
-                  className={`max-w-[85%] ${msg.from === "user" ? "ml-auto" : ""}`}
-                >
+                <div key={i} className={`max-w-[85%] ${msg.from === "user" ? "ml-auto" : ""}`}>
                   <div
                     className={`px-4 py-2 rounded-xl text-sm ${
                       msg.from === "bot" ? "bg-gray-100" : "bg-indigo-600 text-white"
@@ -196,12 +191,7 @@ const ChatBot = () => {
               ))}
 
               {typing && (
-                <div className="flex gap-2 text-sm text-gray-500">
-                  <span className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce" />
-                  <span className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce delay-150" />
-                  <span className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce delay-300" />
-                  Typing…
-                </div>
+                <div className="text-sm text-gray-500">Typing…</div>
               )}
 
               <div ref={bottomRef} />
@@ -209,7 +199,6 @@ const ChatBot = () => {
 
             {/* Suggestions */}
             <div className="px-4 py-2 border-t space-y-1.5">
-              <p className="text-xs text-gray-400">Suggested questions</p>
               {(SUGGESTIONS[lastIntent] || []).map((q, i) => (
                 <button
                   key={i}
@@ -232,10 +221,7 @@ const ChatBot = () => {
                 placeholder="Type your message…"
                 className="flex-1 px-4 py-2 rounded-xl border focus:ring-2 focus:ring-indigo-500 outline-none"
               />
-              <button
-                onClick={() => sendMessage()}
-                className="px-4 rounded-xl bg-indigo-600 text-white"
-              >
+              <button onClick={() => sendMessage()} className="px-4 rounded-xl bg-indigo-600 text-white">
                 <Send size={18} />
               </button>
             </div>
