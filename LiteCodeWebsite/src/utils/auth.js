@@ -1,5 +1,5 @@
 export const ADMIN_CREDENTIALS = {
-  email: "admin@ilitecode.com",
+  email: "admin@123.com",
   password: "admin123"
 };
 

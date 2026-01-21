@@ -64,7 +64,7 @@ const AdminDashboard = () => {
   /* ---------------- LOGOUT ---------------- */
   const logout = () => {
     localStorage.removeItem("admin_logged_in");
-    navigate("/admin-login");
+    navigate("/admin-login", { replace: true });
   };
 
   return (

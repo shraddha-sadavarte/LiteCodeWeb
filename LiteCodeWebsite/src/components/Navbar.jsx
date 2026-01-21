@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Menu, X } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { allowNavigation } from "../utils/navigationGuard";
 
 /* ================= STYLES ================= */
 
@@ -179,11 +180,11 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <MenuWrap>
-          <MenuItem to="/" end $scrolled={scrolled}>Home</MenuItem>
-          <MenuItem to="/about" $scrolled={scrolled}>About</MenuItem>
-          <MenuItem to="/services" $scrolled={scrolled}>Services</MenuItem>
-          <MenuItem to="/careers" $scrolled={scrolled}>Careers</MenuItem>
-          <CTA to="/contact">Contact</CTA>
+          <MenuItem to="/" onClick={allowNavigation} end $scrolled={scrolled}>Home</MenuItem>
+          <MenuItem to="/about" onClick={allowNavigation} $scrolled={scrolled}>About</MenuItem>
+          <MenuItem to="/services" onClick={allowNavigation} $scrolled={scrolled}>Services</MenuItem>
+          <MenuItem to="/careers" onClick={allowNavigation} $scrolled={scrolled}>Careers</MenuItem>
+          <CTA to="/contact" onClick={allowNavigation}>Contact</CTA>
         </MenuWrap>
 
         {/* Mobile Button */}
