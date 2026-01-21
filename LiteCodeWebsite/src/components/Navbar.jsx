@@ -181,8 +181,8 @@ const Navbar = () => {
         <MenuWrap>
           <MenuItem to="/" end $scrolled={scrolled}>Home</MenuItem>
           <MenuItem to="/about" $scrolled={scrolled}>About</MenuItem>
-          <MenuItem to="/services" $scrolled={scrolled}>Services</MenuItem>
-          <MenuItem to="/careers" $scrolled={scrolled}>Careers</MenuItem>
+          <MenuItem to="/services"  $scrolled={scrolled}>Services</MenuItem>
+          <MenuItem to="/careers"  $scrolled={scrolled}>Careers</MenuItem>
           <CTA to="/contact">Contact</CTA>
         </MenuWrap>
 
