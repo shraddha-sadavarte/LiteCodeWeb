@@ -74,48 +74,85 @@ function Home() {
       </section>
 
       {/* ================= WORK PROCESS ================= */}
-      <section className="py-20 bg-white">
+        <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          
-          <motion.div
+
+            {/* Section heading */}
+            <motion.div
             className="text-center mb-14"
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-          >
+            >
             <h2 className="text-3xl font-bold text-gray-900">
-              Our Work Process
+                Our Work Process
             </h2>
             <p className="mt-4 text-gray-600">
-              A structured and transparent approach to deliver high-quality solutions.
+                A structured and transparent approach to deliver high-quality solutions.
             </p>
-          </motion.div>
+            </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Cards */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              "Requirement Analysis",
-              "UI/UX Design",
-              "Development",
-              "Testing & Deployment",
+                "Requirement Analysis",
+                "UI / UX Design",
+                "Development",
+                "Testing & Deployment",
             ].map((step, i) => (
-              <motion.div
+                <motion.div
                 key={i}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                whileHover={{ y: -8 }}
-                className="p-6 rounded-2xl shadow-md bg-gray-50 text-center"
-              >
-                <Workflow className="mx-auto text-indigo-600 mb-4" size={32} />
-                <h3 className="font-semibold text-lg text-gray-900">{step}</h3>
-              </motion.div>
+                whileHover="hover"
+                className="group relative p-6 rounded-2xl bg-gray-50 text-center overflow-hidden"
+                >
+                {/* Step number */}
+                <span className="absolute top-4 right-4 text-xs font-bold text-gray-300">
+                    0{i + 1}
+                </span>
+
+                {/* Glow layer */}
+                <div className="absolute inset-0 rounded-2xl
+                    bg-gradient-to-br from-sky-500/0 to-orange-500/0
+                    group-hover:from-sky-500/20 group-hover:to-orange-500/20
+                    transition-all duration-500"
+                />
+
+                {/* Content */}
+                <div className="relative z-10">
+                    <motion.div
+                    variants={{ hover: { scale: 1.15, rotate: 2 } }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="flex justify-center mb-4"
+                    >
+                    <Workflow
+                        size={34}
+                        className="text-indigo-600 group-hover:text-sky-600 transition-colors duration-300"
+                    />
+                    </motion.div>
+
+                    <h3 className="font-semibold text-lg text-gray-900">
+                    {step}
+                    </h3>
+                </div>
+
+                {/* Shadow */}
+                <div className="absolute inset-0 rounded-2xl
+                    shadow-md group-hover:shadow-2xl
+                    transition-shadow duration-500"
+                />
+                </motion.div>
             ))}
-          </div>
+            </div>
         </div>
-      </section>
+        </section>
+
+
 
       {/* ================= WHY CHOOSE US ================= */}
       <section className="py-20 bg-gray-50">
@@ -163,45 +200,83 @@ function Home() {
       </section>
 
       {/* ================= OUR SOLUTIONS ================= */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          
-          <motion.div
-            className="text-center mb-14"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold text-gray-900">Our Solutions</h2>
-            <p className="mt-4 text-gray-600">
-              End-to-end digital solutions designed for diverse business needs.
-            </p>
-          </motion.div>
+    <section className="py-20 bg-white">
+    <div className="max-w-7xl mx-auto px-6">
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              "Enterprise Web Applications",
-              "Blockchain-based Systems",
-              "AI-powered Platforms",
-              "Cloud & DevOps Solutions",
-            ].map((solution, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                whileHover={{ scale: 1.07 }}
-                className="p-6 rounded-2xl bg-gray-50 shadow-md text-center"
-              >
-                <Lightbulb className="mx-auto text-indigo-600 mb-4" size={28} />
-                <h3 className="font-semibold text-gray-900">{solution}</h3>
-              </motion.div>
-            ))}
-          </div>
+        {/* Heading */}
+        <motion.div
+        className="text-center mb-14"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        >
+        <h2 className="text-3xl font-bold text-gray-900">Our Solutions</h2>
+        <p className="mt-4 text-gray-600">
+            End-to-end digital solutions designed for diverse business needs.
+        </p>
+        </motion.div>
+
+        {/* Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {[
+            "Enterprise Web Applications",
+            "Blockchain-based Systems",
+            "AI-powered Platforms",
+            "Cloud & DevOps Solutions",
+        ].map((solution, i) => (
+            <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: i * 0.1 }}
+            whileHover="hover"
+            className="group relative p-6 rounded-2xl bg-gray-50 text-center overflow-hidden"
+            >
+            {/* Gradient glow */}
+            <div
+                className="
+                absolute inset-0 rounded-2xl
+                bg-gradient-to-br from-indigo-500/0 to-purple-500/0
+                group-hover:from-indigo-500/15 group-hover:to-purple-500/15
+                transition-all duration-500
+                "
+            />
+
+            {/* Content */}
+            <div className="relative z-10">
+                <motion.div
+                variants={{
+                    hover: { scale: 1.15, rotate: 3 },
+                }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="flex justify-center mb-4"
+                >
+                <Lightbulb
+                    size={28}
+                    className="text-indigo-600 group-hover:text-purple-600 transition-colors duration-300"
+                />
+                </motion.div>
+
+                <h3 className="font-semibold text-gray-900">
+                {solution}
+                </h3>
+            </div>
+
+            {/* Shadow */}
+            <div
+                className="
+                absolute inset-0 rounded-2xl
+                shadow-md group-hover:shadow-2xl
+                transition-shadow duration-500
+                "
+            />
+            </motion.div>
+        ))}
         </div>
-      </section>
+    </div>
+    </section>
 
     <ClientsSection />
     <StatsSection />

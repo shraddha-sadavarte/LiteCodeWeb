@@ -82,7 +82,7 @@ const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
           <div>
             <Link to="/" className="flex items-center gap-2 select-none">
               <img src={logo} alt="LiteCode Logo" className="w-10 h-8 object-contain" />
-              <span className="text-[28px] font-extrabold tracking-wide" style={{ fontFamily:"Georgia, 'Times New Roman', serif"}}>
+              <span className="text-[25px] font-extrabold tracking-wide" style={{ fontFamily:"Georgia, 'Times New Roman', serif"}}>
                 <span className="text-sky-500">Lite</span>
                 <span className="ml-1 text-orange-500">Code</span>
               </span>
@@ -169,7 +169,7 @@ const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
                 <span className="p-1.5 rounded-full bg-green-500/15">
                   <Phone size={14} className="text-green-500" />
                 </span>
-                +91 12345 67890
+                +91 81272 88127
               </a>
 
               <div className="flex items-center gap-2 text-gray-400">
@@ -208,7 +208,7 @@ const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
 
         {/* Bottom */}
         <div className="border-t border-gray-800 text-center py-3 text-xs text-gray-500">
-          © {new Date().getFullYear()} iLiteCode. All rights reserved.
+          © {new Date().getFullYear()} LiteCode. All rights reserved.
         </div>
       </motion.footer>
     </>
