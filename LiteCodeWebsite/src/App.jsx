@@ -44,7 +44,8 @@ const App = () => {
 
       <Footer />
     </BrowserRouter>
-  );
+  ) 
+
 };
 
 export default App;
